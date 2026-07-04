@@ -44,6 +44,32 @@ Our philosophy:
 
 <!-- TODO: Add GIF demo of /opsx:propose → /opsx:archive workflow -->
 
+---
+
+## `genova` CLI — Agent-Only Project Generator
+
+This fork includes **`genova`**, an agent-only CLI for scaffolding and synchronizing AI-agent projects across a workspace (no interactive prompts — all decisions via `--plan`/`--choices` JSON).
+
+### Features
+
+- **`genova new <name>`** — Scaffold project (dotnet/node/java/python) with single-source `.genova/rules.md`
+- **`genova update`** — Update project to latest CLI version (preserves customization)
+- **`genova register <path>`** — Light adoption of legacy projects (writes `.genova-version` only)
+- **`genova adjust-standard <path>`** — Full standardization with relevance-based choices
+- **`genova sync-globals`** — Sync genovabase → agent globals (with backup rotation)
+- **`genova diff-globals`** — Detect drift between genovabase and real globals
+- **`genova revert-globals`** — Restore globals from backup snapshot
+- **`genova list`** — Show all registered projects and their update status
+
+### Agent Contract
+
+All commands support the **plan-contract**:
+- `--plan` → returns JSON with pendencies, no side effects
+- `--choices <json>` or `--choices-file <path>` → applies decisions without prompting
+- Errors include `--plan` JSON so agents can provide choices and retry
+
+---
+
 ## See it in action
 
 ```text
