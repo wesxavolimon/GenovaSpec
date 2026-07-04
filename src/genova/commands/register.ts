@@ -5,7 +5,7 @@ export function registerRegisterCommand(program: Command): void {
   program
     .command('register <path>')
     .description('Adota projeto legado sem modificar arquivos (só escreve .genova-version)')
-    .action((path: string, command: Command) => {
+    .action((path: string, _options: unknown, command: Command) => {
       const cliVersion = command.parent?.version() ?? '0.0.0';
 
       try {

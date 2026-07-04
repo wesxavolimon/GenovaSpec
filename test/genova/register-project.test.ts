@@ -86,3 +86,25 @@ describe('registerProject — UC-04 Backend Integração', () => {
     expect(entry?.updatedAt).toBe(result.registeredAt);
   });
 });
+
+describe('genova register CLI — regression: cliVersion resolution', () => {
+  it('CLI real invocation resolves cliVersion from program.version(), not fallback 0.0.0', () => {
+    // Regressão: action() tinha assinatura (path, command) mas Commander real
+    // passa (path, options, command) mesmo sem .option() declarado — o 2º
+    // parâmetro é sempre `options` (objeto vazio se nenhuma opção existe).
+    // Isso fazia `command.parent` ser undefined e cliVersion cair no fallback.
+    const { Command } = require('commander');
+    const program = new Command();
+    program.name('genova').version('9.9.9');
+
+    let capturedVersion: string | undefined;
+    const sub = program.command('register <path>');
+    sub.action((path: string, _options: unknown, command: any) => {
+      capturedVersion = command.parent?.version() ?? '0.0.0';
+    });
+
+    program.parse(['node', 'genova', 'register', 'some/path']);
+
+    expect(capturedVersion).toBe('9.9.9');
+  });
+});
