@@ -1,8 +1,8 @@
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join, relative, dirname } from 'node:path';
-import { templatesDir } from './package-root.js';
+import { readTemplate, renderTemplate } from './templates.js';
 import { resolvePlanContract, type Pendency, type PlanContractOptions } from './plan-contract.js';
 import {
   emptyRegistry,
@@ -66,19 +66,6 @@ export class InvalidNameError extends Error {
     super(`Nome de projeto invalido: "${name}".`);
     this.name = 'InvalidNameError';
   }
-}
-
-function renderTemplate(content: string, vars: Record<string, string>): string {
-  return Object.entries(vars).reduce(
-    (acc, [key, value]) => acc.split(`{{${key}}}`).join(value),
-    content
-  );
-}
-
-const TEMPLATES_ROOT = templatesDir(import.meta.url);
-
-function readTemplate(relativePath: string): string {
-  return readFileSync(join(TEMPLATES_ROOT, relativePath), 'utf-8');
 }
 
 function computeIaHistoryImportPath(genovaDir: string, home: string): string {
