@@ -1,0 +1,41 @@
+# {{PROJECT_NAME}}
+
+Fonte única de conteúdo gerenciado deste projeto (design.md D2 da change
+`genova-cli-project-generator`). `CLAUDE.md`, `AGENTS.md` e `GEMINI.md`
+importam este arquivo como primeira linha — não duplique este conteúdo neles.
+
+## Identidade
+
+- Projeto: `{{PROJECT_NAME}}`
+- Stack: `{{STACK}}`
+- Gerado por: `genova new` v{{GENOVA_VERSION}}
+
+## Regras de desenvolvimento
+
+- Siga o fluxo OpenSpec: proposta (`/opsx:propose`) → aprovação → implementação
+  task a task via `tasks.md`
+- Nunca commitar, dar push ou abrir PR sem autorização explícita do usuário
+- Testes sempre acompanham a implementação (unitário + integração/funcional
+  conforme a stack)
+
+## Skills
+
+Skills de stack e ai-history são mantidas centralmente no genovabase e
+espelhadas nos agentes globais — não duplicadas por projeto. Consulte
+`~/.ia/SKILLS/` (referência) ou invoque via Skill tool do agente.
+
+## graphify
+
+Este projeto tem (ou terá) um grafo de conhecimento em `graphify-out/`.
+
+- Pra perguntas sobre o código, rode `graphify query "<pergunta>"` antes de
+  grep bruto — retorna um subgrafo focado, geralmente bem menor que
+  `GRAPH_REPORT.md`
+- Depois de mudar código, rode `graphify update .` pra manter o grafo atual
+
+## RTK
+
+Comandos Bash passam pelo hook do RTK (Rust Token Killer) quando configurado
+globalmente — filtragem de output é transparente, não requer ação do projeto.
+
+@{{IA_HISTORY_IMPORT_PATH}}

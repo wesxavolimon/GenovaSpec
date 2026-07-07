@@ -27,7 +27,8 @@
     }
   },
   "bin": {
-    "openspec": "./bin/openspec.js"
+    "openspec": "./bin/openspec.js",
+    "genova": "./bin/genova.js"
   },
   "files": [
     "dist",
@@ -43,6 +44,7 @@
     "build": "node build.js",
     "dev": "tsc --watch",
     "dev:cli": "pnpm build && node bin/openspec.js",
+    "dev:genova": "pnpm build && node bin/genova.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",

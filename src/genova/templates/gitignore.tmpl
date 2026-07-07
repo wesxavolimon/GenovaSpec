@@ -1,0 +1,28 @@
+# Worktrees isolados por branch (HARNESS.md) — nunca versionar
+worktrees/
+
+# Grafo de conhecimento gerado localmente (graphify update .)
+graphify-out/
+
+# Evidências de teste (vídeos, relatórios de cobertura) — gitignored por convenção
+.Tests/
+
+# Segredos locais
+.env
+.env.local
+**/.claude/settings.local.json
+
+# Dependências e build
+**/node_modules/
+**/dist/
+**/bin/
+**/obj/
+**/__pycache__/
+**/.venv/
+**/venv/
+
+# Editor/OS
+**/.vscode/
+**/.idea/
+**/.DS_Store
+**/Thumbs.db
