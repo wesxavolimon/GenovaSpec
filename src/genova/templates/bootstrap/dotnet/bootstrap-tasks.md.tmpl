@@ -1,0 +1,33 @@
+# Tasks
+
+## 0. Setup
+
+- [ ] 0.1 **Confirmar `.NET SDK` alvo e criar `global.json`**
+  - **Done:** `dotnet --version` bate com a versão fixada em `global.json`
+
+## 1. Estrutura
+
+- [ ] 1.1 **Criar solução `{{PROJECT_NAME}}.sln` e projeto principal**
+  - **Comando:** `dotnet new sln -n {{PROJECT_NAME}}` seguido de `dotnet new classlib -o src/{{PROJECT_NAME}}`
+  - **Done:** `dotnet build` passa sem erros
+
+- [ ] 1.2 **Criar projeto de testes (`xUnit`) e referenciar o projeto principal**
+  - **Done:** `dotnet test` roda (mesmo sem testes ainda) sem erro de referência
+
+## Docker e CI
+
+- [ ] D.1 **Criar `Dockerfile` multi-stage (build + runtime)**
+  - **Done:** `docker build .` completa
+
+- [ ] D.2 **Configurar pipeline de CI (build + test)**
+  - **Done:** pipeline roda `dotnet build` e `dotnet test` a cada push
+
+## Documentação
+
+- [ ] Doc.1 **Atualizar README com instruções de build/test/run**
+  - **Done:** README documenta os comandos acima
+
+## Final. PR
+
+- [ ] Final.1 **Commit + push + criar PR** via `mcp__azure-repos__create_pull_request`
+  - **Done:** PR aberto de `feature/bootstrap-setup` para a branch padrão do projeto

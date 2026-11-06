@@ -1,0 +1,38 @@
+# Tasks
+
+> Regra de Docker Isolation (HARNESS.md): build, teste e debug deste projeto
+> SHALL rodar inteiramente via Docker. Nenhuma task abaixo assume JDK ou
+> Maven/Gradle instalados no host — tudo roda em container.
+
+## 0. Setup
+
+- [ ] 0.1 **Criar `Dockerfile` de build (imagem com JDK + Maven)**
+  - **Done:** `docker build -t {{PROJECT_NAME}}-build .` completa
+
+## 1. Estrutura
+
+- [ ] 1.1 **Gerar projeto Maven dentro do container**
+  - **Comando:** `docker run --rm -v "$(pwd):/workspace" -w /workspace {{PROJECT_NAME}}-build mvn archetype:generate ...`
+  - **Done:** `docker run --rm -v "$(pwd):/workspace" -w /workspace {{PROJECT_NAME}}-build mvn -q compile` passa
+
+- [ ] 1.2 **Configurar módulo de testes (JUnit) rodando via container**
+  - **Comando:** `docker compose run --rm build mvn -q test`
+  - **Done:** suíte de teste roda dentro do container, sem `mvn`/`java` no host
+
+## Docker e CI
+
+- [ ] D.1 **Criar `docker-compose.yml` com serviços `build`, `test`, `run`**
+  - **Done:** `docker compose run --rm test` executa a suíte completa
+
+- [ ] D.2 **Configurar pipeline de CI usando as mesmas imagens Docker**
+  - **Done:** pipeline chama `docker compose run --rm test`, nunca `mvn`/`java` diretamente no agente de CI
+
+## Documentação
+
+- [ ] Doc.1 **Atualizar README com instruções de build/test/run 100% via Docker**
+  - **Done:** README não menciona instalar JDK/Maven localmente
+
+## Final. PR
+
+- [ ] Final.1 **Commit + push + criar PR** via `mcp__azure-repos__create_pull_request`
+  - **Done:** PR aberto de `feature/bootstrap-setup` para a branch padrão do projeto

@@ -1,0 +1,32 @@
+# Tasks
+
+## 0. Setup
+
+- [ ] 0.1 **Fixar versão do Node em `.nvmrc`/`package.json#engines`**
+  - **Done:** `node --version` bate com a versão fixada
+
+## 1. Estrutura
+
+- [ ] 1.1 **Rodar `pnpm init` e configurar `tsconfig.json`**
+  - **Done:** `pnpm build` (ou `tsc --noEmit`) passa sem erros
+
+- [ ] 1.2 **Configurar test runner (vitest) e um teste smoke**
+  - **Done:** `pnpm test` passa com 1+ teste
+
+## Docker e CI
+
+- [ ] D.1 **Criar `Dockerfile` multi-stage (build + runtime)**
+  - **Done:** `docker build .` completa
+
+- [ ] D.2 **Configurar pipeline de CI (lint + build + test)**
+  - **Done:** pipeline roda a cada push
+
+## Documentação
+
+- [ ] Doc.1 **Atualizar README com instruções de build/test/run**
+  - **Done:** README documenta os comandos acima
+
+## Final. PR
+
+- [ ] Final.1 **Commit + push + criar PR** via `mcp__azure-repos__create_pull_request`
+  - **Done:** PR aberto de `feature/bootstrap-setup` para a branch padrão do projeto
